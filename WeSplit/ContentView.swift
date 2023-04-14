@@ -36,6 +36,8 @@ struct ContentView: View {
                         ForEach(1..<11){
                             Text("\($0) people")
                         }
+                        
+                        // This is a comment
                     }
                     
                 }
