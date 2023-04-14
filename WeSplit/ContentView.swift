@@ -15,7 +15,15 @@ struct ContentView: View {
     @FocusState private var amountIsFocused: Bool
     let tipPercentages = [10, 15, 20, 25, 0]
     
-    var totalPerson: Double{
+    var totalcheck: Double{
+        let peopleCount = Double(numberOfPeople + 1)
+        let tip = Double(tipPercentage)
+        let tipValue = checkAmount/100 * tip
+        let grandTotal = checkAmount + tipValue
+        return grandTotal
+    }
+    
+    var totalPerPerson: Double{
         let peopleCount = Double(numberOfPeople + 1)
         let tip = Double(tipPercentage)
         let tipValue = checkAmount/100 * tip
@@ -47,13 +55,19 @@ struct ContentView: View {
                     }
                     .pickerStyle(.segmented)
                 }header: {
-                    Text("Tip Percentage")
+                    Text("Tip Percentage").font(.system(size: 20, weight: .bold, design: .monospaced))
                 }
                 Section{
-                    Text(totalPerson, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                    Text(totalcheck, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                    
+                }header:{
+                    Text("Total Check").font(.system(size: 20, weight: .bold, design: .monospaced))
+                }
+                Section{
+                    Text(totalPerPerson, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                     
                 }header: {
-                    Text("Split")
+                    Text("Split").font(.system(size: 20, weight: .bold, design: .monospaced))
                 }
                 .navigationTitle("WeSplit")
                 .navigationBarTitleDisplayMode(.inline)
